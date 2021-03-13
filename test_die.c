@@ -5,8 +5,13 @@
 
 int main(void)
 {
-  char *name = "Gott";
-  die("%s ist tot!", name);
-  fprintf(stderr, "This message never be displayed.");
+  char *name = "non-existent-file-name";
+  FILE *in;
+
+  in = fopen(name, "r");
+  if (in == NULL) {
+    die("can't open '%s'", name);
+  }
+  fprintf(stderr, "This message never be output.");
   return 0;
 }
